@@ -1,3 +1,5 @@
+@import "./reset.css";
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,12 +18,22 @@
   --bg-colour-1: #0f172b;
   --bg-colour-2: #59168b;
   --bg-corner-1: #ad46ff;
-  --bg-corner-2: #ad46ff;
+
+  --grey-300: oklch(0.872 0.01 258.338);
+  --grey-400: oklch(0.707 0.022 261.325);
+
+  
 }
 
-* {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+#root {
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--bg-colour-1),
+    var(--bg-colour-2),
+    var(--bg-colour-1)
+  );
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
 }
