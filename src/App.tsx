@@ -1,5 +1,7 @@
+import Main from "./components/Main/Main";
+
 function App() {
-  return <>test</>;
+  return <Main>testtest</Main>;
 }
 
 export default App;

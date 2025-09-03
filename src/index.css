@@ -11,4 +11,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* COLORS */
+  --bg-colour-1: #0f172b;
+  --bg-colour-2: #59168b;
+  --bg-corner-1: #ad46ff;
+  --bg-corner-2: #ad46ff;
+}
+
+* {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
