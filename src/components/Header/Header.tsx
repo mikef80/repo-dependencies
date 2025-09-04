@@ -1,3 +1,4 @@
+import { RefreshCw, Settings } from "lucide-react";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -9,8 +10,13 @@ const Header = () => {
         <p className={styles.p}>Connect to: &lt;insert dynamic name here&gt;</p>
       </div>
       <div className={styles.column_right}>
-        <button>test</button>
-        <button>test</button>
+        <button className={styles.button_settings}>
+          <Settings className={styles.settings} />
+        </button>
+        <button className={styles.button_refresh}>
+          <RefreshCw className={styles.refresh} />
+          Loading
+        </button>
       </div>
     </header>
   );

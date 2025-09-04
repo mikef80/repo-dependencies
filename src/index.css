@@ -21,6 +21,13 @@
 
   --grey-300: oklch(0.872 0.01 258.338);
   --grey-400: oklch(0.707 0.022 261.325);
+  --white: oklch(1 0 0);
+  --white-10: color-mix(in oklab, var(--white) 10%, transparent);
+  --white-20: color-mix(in oklab, var(--white) 20%, transparent);
+  --purple-500: oklch(62.7% 0.265 303.9);
+  --cyan-500: oklch(71.5% 0.143 215.221);
+  --purple-600: oklch(55.8% 0.288 302.321);
+  --cyan-600: oklch(60.9% 0.126 221.723);
 
   /* BREAKPOINTS */
   --breakpoint-mobile: 420px;
