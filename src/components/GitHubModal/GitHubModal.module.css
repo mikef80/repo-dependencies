@@ -19,7 +19,7 @@
   color: var(--white);
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-around;
   align-items: center;
   border: 1px solid var(--purple-500);
   border-radius: 0.5rem;

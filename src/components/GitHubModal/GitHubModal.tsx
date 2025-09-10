@@ -13,6 +13,7 @@ const GitHubModal = ({ onToggle }: GitHubModalProps) => {
           <label htmlFor='username'>GitHub Username:</label>
           <input type='text' name='username' id='username' />
         </div>
+        <button onClick={onToggle}>Close</button>
       </div>
     </div>
   );
