@@ -8,6 +8,8 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
+  z-index: -1;
+  mix-blend-mode: multiply;
 }
 
 .tr,
@@ -15,7 +17,7 @@
   height: 320px;
   width: 320px;
   position: absolute;
-  mix-blend-mode: multiply;
+  
   filter: blur(24px);
   opacity: 20%;
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -31,6 +33,6 @@
 .tl {
   bottom: -160px;
   left: -160px;
-  background-color: var(--bg-corner-2);
+  background-color: var(--bg-corner-1);
   animation-delay: 2000ms;
 }

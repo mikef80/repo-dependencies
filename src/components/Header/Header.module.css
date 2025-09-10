@@ -1,0 +1,90 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.column_left {
+  display: flex;
+  flex-direction: column;
+}
+
+.column_right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 16px;
+}
+
+.h1 {
+  font-weight: 700;
+}
+
+.h2 {
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--grey-300);
+  line-height: 1.4;
+}
+
+p {
+  font-size: 0.875rem;
+  color: var(--grey-400);
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+.button {
+  border-radius: 0.5rem;
+}
+
+.button_settings {
+  background-color: var(--white-10);
+  border-color: var(--white-20);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: var(--grey-300);
+  transition-property: color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.button_settings:hover {
+  color: var(--white);
+}
+
+.button_refresh {
+  background: linear-gradient(to right, var(--purple-500) 0%, var(--cyan-500) 100%);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  border: 0;
+}
+
+.button_refresh:hover {
+  background: linear-gradient(to right, var(--purple-600) 0%, var(--cyan-600) 100%);
+}
+
+.settings {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.refresh {
+  height: 1rem;
+  width: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

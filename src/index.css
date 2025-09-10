@@ -1,3 +1,5 @@
+@import "./reset.css";
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,12 +18,31 @@
   --bg-colour-1: #0f172b;
   --bg-colour-2: #59168b;
   --bg-corner-1: #ad46ff;
-  --bg-corner-2: #ad46ff;
+
+  --grey-300: oklch(0.872 0.01 258.338);
+  --grey-400: oklch(0.707 0.022 261.325);
+  --white: oklch(1 0 0);
+  --white-10: color-mix(in oklab, var(--white) 10%, transparent);
+  --white-20: color-mix(in oklab, var(--white) 20%, transparent);
+  --purple-500: oklch(62.7% 0.265 303.9);
+  --cyan-500: oklch(71.5% 0.143 215.221);
+  --purple-600: oklch(55.8% 0.288 302.321);
+  --cyan-600: oklch(60.9% 0.126 221.723);
+
+  /* BREAKPOINTS */
+  --breakpoint-mobile: 420px;
+  --breakpoint-tablet: 768px;
 }
 
-* {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+#root {
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--bg-colour-1),
+    var(--bg-colour-2),
+    var(--bg-colour-1)
+  );
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
 }
