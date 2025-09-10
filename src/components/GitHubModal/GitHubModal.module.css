@@ -1,0 +1,42 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000067;
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 300px; */
+  height: 300px;
+  background-color: var(--bg-colour-1);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border: 1px solid var(--purple-500);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.username {
+  flex-direction: column;
+}
+
+.username label {
+  margin-right: 1rem;
+  font-size: 0.875rem;
+}
+
+.username input {
+  border-radius: 0.5rem;
+  border-style: solid;
+  width: 100%;
+}
