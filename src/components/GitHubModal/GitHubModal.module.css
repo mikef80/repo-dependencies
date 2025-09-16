@@ -60,6 +60,7 @@ form {
   border: 1px solid var(--grey-400);
   cursor: pointer;
   padding: 0.25rem 0.5rem;
+  font-weight: 500;
 }
 
 .buttons {
@@ -69,6 +70,7 @@ form {
 
 .submit {
   background-color: var(--green-500);
+  color: var(--grey-600);
 }
 
 .submit:hover {

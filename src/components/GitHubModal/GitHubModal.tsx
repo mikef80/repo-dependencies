@@ -52,9 +52,9 @@ const GitHubModal = ({ toggleGitHubModal, gitHub }: GitHubModalProps) => {
             />
           </div>
           <div className={styles.token}>
-            <label htmlFor='token'>GitHub Token:</label>
+            <label htmlFor='token'>GitHub Token (optional):</label>
             <input
-              type='text'
+              type='password'
               id='token'
               value={draftDetails.token || ""}
               onChange={handleInputChange}
