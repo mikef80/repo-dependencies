@@ -29,7 +29,7 @@ const Header = () => {
           </button>
           <button className={styles.button_refresh}>
             <RefreshCw className={styles.refresh} />
-            Loading
+            Refresh
           </button>
         </div>
       </header>
