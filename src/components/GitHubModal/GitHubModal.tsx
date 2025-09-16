@@ -1,4 +1,10 @@
-import { useState, type ChangeEvent, type Dispatch, type SetStateAction, type FormEvent } from "react";
+import {
+  useState,
+  type ChangeEvent,
+  type Dispatch,
+  type SetStateAction,
+  type FormEvent,
+} from "react";
 import styles from "./GitHubModal.module.css";
 import type { gitHubDetailsType } from "../../types/types";
 
@@ -32,33 +38,33 @@ const GitHubModal = ({ toggleGitHubModal, gitHub }: GitHubModalProps) => {
   };
 
   return (
-    <div className={styles.overlay} onClick={toggleGitHubModal}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
         <h3>GitHub Settings</h3>
         <form onSubmit={handleSubmit}>
           <div className={styles.username}>
-            <label htmlFor="username">GitHub Username:</label>
+            <label htmlFor='username'>GitHub Username:</label>
             <input
-              type="text"
-              id="username"
+              type='text'
+              id='username'
               value={draftDetails.username || ""}
               onChange={handleInputChange}
             />
           </div>
           <div className={styles.token}>
-            <label htmlFor="token">GitHub Token:</label>
+            <label htmlFor='token'>GitHub Token:</label>
             <input
-              type="text"
-              id="token"
+              type='text'
+              id='token'
               value={draftDetails.token || ""}
               onChange={handleInputChange}
             />
           </div>
           <div className={styles.buttons}>
-            <button type="submit" className={styles.submit}>
+            <button type='submit' className={styles.submit}>
               Save
             </button>
-            <button type="button" className={styles.cancel} onClick={handleCancel}>
+            <button type='button' className={styles.cancel} onClick={handleCancel}>
               Cancel
             </button>
           </div>
