@@ -51,6 +51,7 @@ p {
 
 .button_settings:hover {
   color: var(--white);
+  cursor: pointer;
 }
 
 .button_refresh {
