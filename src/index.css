@@ -21,6 +21,7 @@
 
   --grey-300: oklch(0.872 0.01 258.338);
   --grey-400: oklch(0.707 0.022 261.325);
+  --grey-600: oklch(0.446 0.03 256.802);
   --white: oklch(1 0 0);
   --white-10: color-mix(in oklab, var(--white) 10%, transparent);
   --white-20: color-mix(in oklab, var(--white) 20%, transparent);
@@ -28,6 +29,10 @@
   --cyan-500: oklch(71.5% 0.143 215.221);
   --purple-600: oklch(55.8% 0.288 302.321);
   --cyan-600: oklch(60.9% 0.126 221.723);
+  --green-500: oklch(72.3% 0.219 149.579);
+  --green-600: oklch(62.7% 0.194 149.214);
+  --red-500: oklch(63.7% 0.237 25.331);
+  --red-700: oklch(50.5% 0.213 27.518);
 
   /* BREAKPOINTS */
   --breakpoint-mobile: 420px;
