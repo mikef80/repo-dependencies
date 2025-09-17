@@ -1,4 +1,4 @@
-import type { Repo, gitHubDetailsType } from "../types/types";
+import type { Repo, GitHubCredentials } from "../types/types";
 import axios from "axios";
 
 export const transformRepo = (repo: any): Repo => ({
@@ -20,7 +20,7 @@ export const transformRepo = (repo: any): Repo => ({
   vulnerabilities: 0, // placeholder
 });
 
-export const fetchRepoData = async (gitHubDetails: gitHubDetailsType) => {
+export const fetchRepoData = async (gitHubDetails: GitHubCredentials) => {
   let url = "";
   if (!gitHubDetails.token) {
     url = `https://api.github.com/users/${gitHubDetails.username}/repos`;
@@ -50,7 +50,7 @@ export const fetchRepoData = async (gitHubDetails: gitHubDetailsType) => {
   }
 };
 
-export const fetchLanguageDetails = async (gitHubDetails: gitHubDetailsType, repo: Repo) => {
+export const fetchLanguageDetails = async (gitHubDetails: GitHubCredentials, repo: Repo) => {
   const url = repo.languages_url;
 
   if (!url) {
