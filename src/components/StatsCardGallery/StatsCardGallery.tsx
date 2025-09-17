@@ -1,13 +1,16 @@
+import useRepos from "../../stores/repoStore";
 import StatsCard from "../StatsCard/StatsCard";
 import styles from "./StatsCardGallery.module.css";
 import { FileText, AlertCircle, Zap, Activity } from "lucide-react";
 
 const StatsCardGallery = () => {
+  const { repos } = useRepos();
+
   return (
     <div className={styles.statsCardGallery}>
       <StatsCard
         title='Total Repositories'
-        count={0}
+        count={repos.length}
         iconClassName='totalRepositories'
         className='totalRepositories'
         icon={FileText}

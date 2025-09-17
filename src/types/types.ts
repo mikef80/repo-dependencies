@@ -21,3 +21,8 @@ export type Repo = {
   dependencyDetails: any[]; // custom, define shape later if needed
   private: boolean;
 };
+
+export type Store = {
+  repos: Repo[];
+  setRepos: (newRepos: Repo[]) => void;
+};
