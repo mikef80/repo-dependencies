@@ -1,0 +1,48 @@
+.card {
+  width: 100%;
+  border: 1px solid var(--grey-600);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details p {
+  color: var(--white);
+}
+
+.count {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+.totalRepositories,
+.totalRepositories .count {
+  color: var(--purple-500);
+}
+
+.outdatedDependencies,
+.outdatedDependencies .count {
+  color: var(--red-500);
+}
+
+.securityIssues,
+.securityIssues .count {
+  color: var(--yellow-500);
+}
+
+.totalDependencies,
+.totalDependencies .count {
+  color: var(--cyan-500);
+}

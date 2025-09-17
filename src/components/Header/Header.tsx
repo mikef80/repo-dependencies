@@ -49,7 +49,6 @@ const Header = () => {
             Refresh
           </button>
         </div>
-        private: {repos.filter((repo) => repo.private === false).length}
       </header>
 
       {showGitHubModal && (

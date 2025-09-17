@@ -33,6 +33,7 @@
   --green-600: oklch(62.7% 0.194 149.214);
   --red-500: oklch(63.7% 0.237 25.331);
   --red-700: oklch(50.5% 0.213 27.518);
+  --yellow-500: oklch(79.5% 0.184 86.047);
 
   /* BREAKPOINTS */
   --breakpoint-mobile: 420px;
