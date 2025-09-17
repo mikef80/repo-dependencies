@@ -2,7 +2,9 @@ import { RefreshCw, Settings } from "lucide-react";
 import styles from "./Header.module.css";
 import GitHubModal from "../GitHubModal/GitHubModal";
 import { useState } from "react";
-import type { gitHubDetailsType } from "../../types/types";
+import type { gitHubDetailsType, Repo } from "../../types/types";
+
+import { fetchLanguageDetails, fetchRepoData } from "../../utils/repoUtils";
 
 const Header = () => {
   const [showGitHubModal, setShowGitHubModal] = useState(false);
@@ -10,9 +12,21 @@ const Header = () => {
     username: "",
     token: "",
   });
+  const [repos, setRepos] = useState<Repo[]>([]);
 
   const toggleGitHubModal = () => {
     setShowGitHubModal((currentShowState) => !currentShowState);
+  };
+
+  const onRefreshClick = async () => {
+    const fetchedRepos = await fetchRepoData(gitHubDetails);
+
+    fetchedRepos.forEach(async (repo) => {
+      const { data } = await fetchLanguageDetails(gitHubDetails, repo);
+      repo.languages = data;
+    });
+
+    setRepos(fetchedRepos);
   };
 
   return (
@@ -21,17 +35,18 @@ const Header = () => {
         <div className={styles.column_left}>
           <h1 className={styles.h1}>Repository Dashboard</h1>
           <h2 className={styles.h2}>Monitor dependencies, security and project health</h2>
-          <p className={styles.p}>Connected to: &lt;insert dynamic name here&gt;</p>
+          <p className={styles.p}>Connected to: @{gitHubDetails.username}</p>
         </div>
         <div className={styles.column_right}>
           <button className={styles.button_settings} onClick={toggleGitHubModal}>
             <Settings className={styles.settings} />
           </button>
-          <button className={styles.button_refresh}>
+          <button className={styles.button_refresh} onClick={onRefreshClick}>
             <RefreshCw className={styles.refresh} />
             Refresh
           </button>
         </div>
+        private: {repos.filter((repo) => repo.private === false).length}
       </header>
 
       {showGitHubModal && (
