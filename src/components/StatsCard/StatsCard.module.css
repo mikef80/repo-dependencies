@@ -1,0 +1,24 @@
+.card {
+  width: 100%;
+  border: 1px solid var(--grey-600);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details p {
+  color: var(--white);
+}
+
+.filetext {
+  width: 2rem;
+  height: 2rem;
+  color: var(--purple-500);
+}

@@ -1,12 +1,15 @@
 import Corners from "./components/Corners/Corners";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
+import StatsCards from "./components/StatsCard/StatsCard";
 
 function App() {
   return (
     <>
       <Header />
-      <Main>test</Main>
+      <Main>
+        <StatsCards />
+      </Main>
       <Corners />
     </>
   );
