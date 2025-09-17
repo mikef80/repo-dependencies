@@ -1,14 +1,14 @@
 import Corners from "./components/Corners/Corners";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
-import StatsCards from "./components/StatsCard/StatsCard";
+import StatsCardsGallery from "./components/StatsCardGallery/StatsCardGallery";
 
 function App() {
   return (
     <>
       <Header />
       <Main>
-        <StatsCards />
+        <StatsCardsGallery />
       </Main>
       <Corners />
     </>
