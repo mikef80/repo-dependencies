@@ -15,6 +15,7 @@
   transform: translate(-50%, -50%);
   /* width: 300px; */
   height: 300px;
+  width: 90%;
   background-color: var(--bg-colour-1);
   color: var(--white);
   display: flex;
@@ -83,4 +84,10 @@ form {
 
 .cancel:hover {
   background-color: var(--red-700);
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    width: auto;
+  }
 }
