@@ -6,13 +6,13 @@ import {
   type FormEvent,
 } from "react";
 import styles from "./GitHubModal.module.css";
-import type { gitHubDetailsType } from "../../types/types";
+import type { GitHubCredentials } from "../../types/types";
 
 interface GitHubModalProps {
   toggleGitHubModal: () => void;
   gitHub: {
-    gitHubDetails: gitHubDetailsType;
-    setGitHubDetails: Dispatch<SetStateAction<gitHubDetailsType>>;
+    gitHubDetails: GitHubCredentials;
+    setGitHubDetails: Dispatch<SetStateAction<GitHubCredentials>>;
   };
 }
 
@@ -20,7 +20,7 @@ const GitHubModal = ({ toggleGitHubModal, gitHub }: GitHubModalProps) => {
   const { gitHubDetails, setGitHubDetails } = gitHub;
 
   // Local draft state
-  const [draftDetails, setDraftDetails] = useState<gitHubDetailsType>(gitHubDetails);
+  const [draftDetails, setDraftDetails] = useState<GitHubCredentials>(gitHubDetails);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;

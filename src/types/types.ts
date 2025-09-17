@@ -1,4 +1,7 @@
-export type gitHubDetailsType = { username: string; token: string };
+export interface GitHubCredentials {
+  username: string;
+  token?: string;
+}
 
 export type Repo = {
   id: number;
