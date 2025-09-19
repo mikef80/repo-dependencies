@@ -9,7 +9,7 @@ export const transformRepo = (repo: any): Repo => ({
   forks: repo.forks_count,
   htmlUrl: repo.html_url,
   id: repo.id,
-  languages: {},
+  languages: {} as Record<string, number>,
   languages_url: repo.languages_url,
   lastUpdate: repo.updated_at,
   name: repo.name,

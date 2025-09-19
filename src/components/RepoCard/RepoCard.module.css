@@ -1,0 +1,50 @@
+.repocard {
+  list-style: none;
+  border: 1px solid var(--grey-600);
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.header_description_container {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.header_description {
+  flex: 1;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--grey-400);
+  line-height: 1.4;
+  /* margin-top: 0.5rem; */
+}
+
+.svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.languages {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.dependencies,
+.vulnerabilities,
+.size,
+.updated_details {
+  font-size: 0.875rem;
+  color: var(--grey-400);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.dependencies_count,
+.vulnerabilities_count,
+.size_count {
+  color: var(--white);
+}
