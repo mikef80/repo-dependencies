@@ -1,20 +1,10 @@
 import { AlertCircle } from "lucide-react";
 import styles from "./RepoCard.module.css";
 import type { Repo } from "../../types/types";
+import LanguagesList from "../LanguagesList/LanguagesList";
+import LanguagesBar from "../LanguagesBar/LanguagesBar";
 
 const RepoCard = ({ repo }: { repo: Repo }) => {
-  console.log(repo.languages);
-
-  const total = Object.values(repo.languages).reduce<number>((acc, val) => acc + val, 0);
-
-  const colors: Record<string, string> = {
-    CSS: "#264de4",
-    HTML: "#e34c26",
-    JavaScript: "#f7df1e",
-    TypeScript: "#3178c6",
-    Default: "#999",
-  };
-
   return (
     <li className={styles.repocard}>
       <div className={styles.header_description_container}>
@@ -25,26 +15,12 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
         <AlertCircle className={styles.svg} />
       </div>
       <div className={styles.languages}>
-        {Object.entries(repo.languages).map(([lang, value]) => {
-          const width = (value / total) * 100;
-
-          return (
-            <div
-              key={lang}
-              style={{
-                width: `${width}%`,
-                backgroundColor: colors[lang] || colors.default,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                fontSize: "12px",
-              }}
-              title={`${lang}: ${value}`}>
-              {width > 10 && lang}
-            </div>
-          );
-        })}
+        <div className={styles.languages_list}>
+          <LanguagesList languages={repo.languages} />
+        </div>
+        <div className={styles.languages_bar}>
+          <LanguagesBar languages={repo.languages} />
+        </div>
       </div>
       <div className={styles.dependencies}>
         <span className={styles.dependencies_title}>Dependencies</span>
