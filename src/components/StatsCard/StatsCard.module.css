@@ -1,11 +1,12 @@
 .statscard {
   width: 100%;
-  border: 1px solid var(--grey-600);
+  border: 1px solid var(--white-20);
   border-radius: 0.5rem;
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--white-10);
 }
 
 .details {

@@ -1,4 +1,4 @@
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Calendar } from "lucide-react";
 import styles from "./RepoCard.module.css";
 import type { Repo } from "../../types/types";
 import LanguagesList from "../LanguagesList/LanguagesList";
@@ -34,13 +34,11 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
         <span className={styles.size_title}>Size</span>
         <span className={styles.size_count}>123</span>
       </div>
-      <hr />
+      <hr className={styles.hr} />
       <div className={styles.updated_details}>
-        <span>
-          <span>Icon</span>
-          <span>Size</span>
-        </span>
-        <span>123</span>
+        <Calendar className={styles.svg} />
+
+        <span>View Details &rarr;</span>
       </div>
     </li>
   );

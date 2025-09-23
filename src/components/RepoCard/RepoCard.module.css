@@ -1,9 +1,10 @@
 .repocard {
   list-style: none;
-  border: 1px solid var(--grey-600);
+  border: 1px solid var(--white-20);
   border-radius: 0.5rem;
   width: 100%;
   padding: 1.5rem;
+  background-color: var(--white-10);
 }
 
 .header_description_container {
@@ -61,4 +62,12 @@
 .vulnerabilities_count,
 .size_count {
   color: var(--white);
+}
+
+.hr {
+  margin: 1rem 0;
+}
+
+.updated_details {
+  align-items:center;
 }
