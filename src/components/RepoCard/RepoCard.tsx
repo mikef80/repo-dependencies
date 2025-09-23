@@ -3,6 +3,7 @@ import styles from "./RepoCard.module.css";
 import type { Repo } from "../../types/types";
 import LanguagesList from "../LanguagesList/LanguagesList";
 import LanguagesBar from "../LanguagesBar/LanguagesBar";
+import { formatDistanceToNowStrict } from "date-fns";
 
 const RepoCard = ({ repo }: { repo: Repo }) => {
   return (
@@ -36,7 +37,10 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
       </div>
       <hr className={styles.hr} />
       <div className={styles.updated_details}>
-        <Calendar className={styles.svg} />
+        <div className={styles.updated}>
+          <Calendar className={styles.svg} />
+          <div>{formatDistanceToNowStrict(new Date(repo.lastUpdate), { addSuffix: true })}</div>
+        </div>
 
         <span>View Details &rarr;</span>
       </div>
