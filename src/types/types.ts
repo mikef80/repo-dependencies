@@ -7,7 +7,7 @@ export type Repo = {
   id: number;
   name: string;
   description: string | null;
-  languages: {};
+  languages: Record<string, number>;
   languages_url: string | null;
   stars: number;
   forks: number;

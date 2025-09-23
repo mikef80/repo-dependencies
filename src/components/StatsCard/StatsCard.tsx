@@ -14,7 +14,7 @@ const StatsCard = ({
   iconClassName: keyof typeof styles;
 }) => {
   return (
-    <div className={`${styles.card} ${styles[className]}`}>
+    <div className={`${styles.statscard} ${styles[className]}`}>
       <div className={styles.details}>
         <p className={styles.title}>{title}</p>
         <p className={styles.count}>{count}</p>
