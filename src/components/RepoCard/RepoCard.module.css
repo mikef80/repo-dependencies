@@ -31,6 +31,14 @@
   width: 1rem;
 }
 
+.svg_success {
+  stroke: var(--green-500);
+}
+
+.svg_danger {
+  stroke: var(--red-500);
+}
+
 .languages {
   margin-bottom: 1rem;
   display: flex;
@@ -72,7 +80,7 @@
 }
 
 .updated_details {
-  align-items:center;
+  align-items: center;
 }
 
 .updated {

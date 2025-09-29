@@ -1,4 +1,4 @@
-import { AlertCircle, Calendar } from "lucide-react";
+import { AlertCircle, Calendar, CircleCheck } from "lucide-react";
 import styles from "./RepoCard.module.css";
 import type { Repo } from "../../types/types";
 import LanguagesList from "../LanguagesList/LanguagesList";
@@ -13,7 +13,11 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
           <h2 className={styles.header}>{repo.name}</h2>
           <p className={styles.description}>{repo.description || "No description provided"}</p>
         </div>
-        <AlertCircle className={styles.svg} />
+        {repo.vulnerabilities === 0 ? (
+          <CircleCheck className={`${styles.svg} ${styles.svg_success}`} />
+        ) : (
+          <AlertCircle className={`${styles.svg} ${styles.svg_danger}`} />
+        )}
       </div>
       <div className={styles.languages}>
         <div className={styles.languages_list}>
@@ -39,7 +43,9 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
       <div className={styles.updated_details}>
         <div className={styles.updated}>
           <Calendar className={styles.svg} />
-          <div>{formatDistanceToNowStrict(new Date(repo.lastUpdate), { addSuffix: true })}</div>
+          <div>
+            {formatDistanceToNowStrict(new Date(repo.lastUpdate), { addSuffix: true })}
+          </div>
         </div>
 
         <span>View Details &rarr;</span>
