@@ -4,19 +4,42 @@ import GitHubModal from "../GitHubModal/GitHubModal";
 import { useEffect, useState } from "react";
 import type { GitHubCredentials } from "../../types/types";
 
-import { fetchLanguageDetails, fetchRepoData } from "../../utils/repoUtils";
+import { fetchLanguageDetails } from "../../utils/repoUtils";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import useRepos from "../../stores/repoStore";
+import { useGitHub } from "../../hooks/useGitHub";
+
+import useRepoStore from "../../stores/repoStore";
 
 const Header = () => {
   const [showGitHubModal, setShowGitHubModal] = useState(false);
-  const [loading, setLoading] = useState(false);
+
   const [gitHubDetails, setGitHubDetails] = useLocalStorage<GitHubCredentials>(
     "github-credentials",
     { username: "", token: "" }
   );
+  const { repos, loading, error, fetchRepoData } = useGitHub(gitHubDetails);
+  const { setRepoStore } = useRepoStore();
 
-  const { setRepos } = useRepos();
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      if (repos.length === 0) return;
+
+      try {
+        const reposWithLanguages = await Promise.all(
+          repos.map(async (repo) => {
+            const { data } = await fetchLanguageDetails(gitHubDetails, repo);
+            return { ...repo, languages: data };
+          })
+        );
+
+        setRepoStore(reposWithLanguages);
+      } catch (error) {
+        console.error("Error fetching languages:", error);
+      }
+    };
+
+    fetchLanguages();
+  }, [repos]);
 
   const toggleGitHubModal = () => {
     setShowGitHubModal((currentShowState) => !currentShowState);
@@ -24,28 +47,13 @@ const Header = () => {
 
   const onFetchClick = async () => {
     if (!gitHubDetails.username || !gitHubDetails.token) return;
-
-    setLoading(true);
-    try {
-      const fetchedRepos = await fetchRepoData(gitHubDetails);
-
-      const reposWithLanguages = await Promise.all(
-        fetchedRepos.map(async (repo) => {
-          const { data } = await fetchLanguageDetails(gitHubDetails, repo);
-          return { ...repo, languages: data };
-        })
-      );
-
-      setRepos(reposWithLanguages);
-    } catch (error) {
-      console.error("Error fetching repos:", error);
-    } finally {
-      setLoading(false);
-    }
+    await fetchRepoData();
   };
 
   useEffect(() => {
-    onFetchClick();
+    if (gitHubDetails.username && gitHubDetails.token) {
+      fetchRepoData();
+    }
   }, []);
 
   return (
