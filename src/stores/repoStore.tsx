@@ -1,9 +1,22 @@
 import { create } from "zustand";
-import { type Store } from "../types/types";
+import type { Repo } from "../types/types";
 
-const useRepos = create<Store>((set) => ({
+interface Store {
+  repos: Repo[];
+  loading: boolean;
+  error: string | null;
+  setRepoStore: (repos: Repo[]) => void;
+  setLoading: (loading: boolean) => void;
+  setError: (error: string | null) => void;
+}
+
+const useRepoStore = create<Store>((set) => ({
   repos: [],
-  setRepos: (newRepos) => set({ repos: newRepos }),
+  loading: false,
+  error: null,
+  setRepoStore: (repos) => set({ repos }),
+  setLoading: (loading) => set({ loading }),
+  setError: (error) => set({ error }),
 }));
 
-export default useRepos;
+export default useRepoStore;

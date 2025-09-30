@@ -1,9 +1,14 @@
-import useRepos from "../../stores/repoStore";
+import useRepoStore from "../../stores/repoStore";
 import RepoCard from "../RepoCard/RepoCard";
 import styles from "./RepoGallery.module.css";
 
 const RepoGallery = () => {
-  const { repos } = useRepos();
+  const { repos, loading } = useRepoStore();
+  console.log(loading, "<--loading");
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.repogallery}>

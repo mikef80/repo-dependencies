@@ -22,7 +22,4 @@ export type Repo = {
   private: boolean;
 };
 
-export type Store = {
-  repos: Repo[];
-  setRepos: (newRepos: Repo[]) => void;
-};
+
