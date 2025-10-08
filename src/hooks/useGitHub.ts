@@ -1,14 +1,13 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useCallback } from "react";
 import type { GitHubCredentials, Repo } from "../types/types";
-import { transformRepo } from "../utils/repoUtils";
+import { fetchLanguageDetails, transformRepo } from "../utils/repoUtils";
 import useRepoStore from "../stores/repoStore";
 
 export const useGitHub = (gitHubDetails: GitHubCredentials) => {
   const { repos, loading, error, setRepoStore, setLoading, setError } = useRepoStore();
 
   const fetchRepoData = useCallback(async () => {
-    console.time("Repo load time");
     setError(null);
 
     let url = "";
@@ -32,12 +31,25 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
         },
       });
 
-      const structuredRepos: Repo[] = data.map((repo: any) => transformRepo(repo));
+      const structuredRepos: Repo[] = await Promise.all(
+        data.map(async (repo: any) => {
+          const baseRepo = transformRepo(repo);
+
+          let languages;
+
+          if (gitHubDetails.token) {
+            const { data } = await fetchLanguageDetails(gitHubDetails, baseRepo);
+            languages = data;
+          }
+
+          return { ...baseRepo, languages };
+        })
+      );
 
       setRepoStore(structuredRepos);
     } catch (error) {
       console.error("Error fetching repositories:", error);
-      setError(error instanceof Error ? error.message : "Failed to fetch repos");
+      setError(error instanceof AxiosError ? error : "Failed to fetch repos");
     } finally {
       setLoading(false);
       console.timeEnd("Repo load time");

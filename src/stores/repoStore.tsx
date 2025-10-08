@@ -1,13 +1,14 @@
 import { create } from "zustand";
 import type { Repo } from "../types/types";
+import type { AxiosError } from "axios";
 
 interface Store {
   repos: Repo[];
   loading: boolean;
-  error: string | null;
+  error: AxiosError | string | null;
   setRepoStore: (repos: Repo[]) => void;
   setLoading: (loading: boolean) => void;
-  setError: (error: string | null) => void;
+  setError: (error: AxiosError | string | null) => void;
 }
 
 const useRepoStore = create<Store>((set) => ({

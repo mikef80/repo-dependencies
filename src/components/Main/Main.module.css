@@ -4,6 +4,12 @@
   }
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .corners {
   position: absolute;
   inset: 0;

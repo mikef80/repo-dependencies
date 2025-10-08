@@ -20,38 +20,17 @@ const Header = () => {
   const { repos, loading, error, fetchRepoData } = useGitHub(gitHubDetails);
   const { setRepoStore } = useRepoStore();
 
-  useEffect(() => {
-    const fetchLanguages = async () => {
-      if (repos.length === 0) return;
-
-      try {
-        const reposWithLanguages = await Promise.all(
-          repos.map(async (repo) => {
-            const { data } = await fetchLanguageDetails(gitHubDetails, repo);
-            return { ...repo, languages: data };
-          })
-        );
-
-        setRepoStore(reposWithLanguages);
-      } catch (error) {
-        console.error("Error fetching languages:", error);
-      }
-    };
-
-    fetchLanguages();
-  }, [repos]);
-
   const toggleGitHubModal = () => {
     setShowGitHubModal((currentShowState) => !currentShowState);
   };
 
   const onFetchClick = async () => {
-    if (!gitHubDetails.username || !gitHubDetails.token) return;
+    if (!gitHubDetails.username && !gitHubDetails.token) return;
     await fetchRepoData();
   };
 
   useEffect(() => {
-    if (gitHubDetails.username && gitHubDetails.token) {
+    if (gitHubDetails.username /* && gitHubDetails.token */) {
       fetchRepoData();
     }
   }, []);
