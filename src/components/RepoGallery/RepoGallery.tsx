@@ -3,20 +3,23 @@ import RepoCard from "../RepoCard/RepoCard";
 import styles from "./RepoGallery.module.css";
 
 const RepoGallery = () => {
-  const { repos, loading } = useRepoStore();
-  console.log(loading, "<--loading");
+  const { repos, loading, error } = useRepoStore();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>;
   }
 
-  return (
-    <div className={styles.repogallery}>
-      {repos.map((repo, id) => (
-        <RepoCard key={id} repo={repo} />
-      ))}
-    </div>
-  );
+  if (repos.length) {
+    return (
+      <div className={styles.repogallery}>
+        {repos.map((repo, id) => (
+          <RepoCard key={id} repo={repo} />
+        ))}
+      </div>
+    );
+  }
+
+  return <div className={styles.error}>Error: {typeof error === "string" ? error : error?.message}</div>;
 };
 
 export default RepoGallery;
