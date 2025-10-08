@@ -41,3 +41,20 @@ export const fetchLanguageDetails = async (gitHubDetails: GitHubCredentials, rep
     throw new Error("Failed to fetch languages");
   }
 };
+
+export const decodeBase64 = (base64: string): string | null => {
+  try {
+    // Node.js environment
+    if (typeof window === "undefined") {
+      return Buffer.from(base64, "base64").toString("utf-8");
+    }
+
+    // Browser environment
+    const binary: string = atob(base64);
+    const bytes: Uint8Array = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
+  } catch (err) {
+    console.error("Base64 decode failed:", err);
+    return null;
+  }
+};

@@ -22,4 +22,8 @@ export type Repo = {
   private: boolean;
 };
 
-
+export type PackageJSON = {
+  dependencies?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+  [key: string]: any;
+};
