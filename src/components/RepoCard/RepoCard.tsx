@@ -13,9 +13,9 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
     repo.devDependencies
   );
 
-  /* useEffect(() => {
+  useEffect(() => {
     fetchDependencies();
-  }, []); */
+  }, []);
 
   return (
     <li className={styles.repocard}>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback } from "react";
-import useDependenciesStore from "../stores/dependencyStore";
+import useDependenciesStore from "../stores/vulnerabilitiesStore";
 
 export const useNPM = (
   dependencies: Record<string, string> = {},
@@ -43,7 +43,7 @@ export const useNPM = (
     } finally {
       setLoading(false);
     }
-  }, [dependencies, devDependencies, setDependenciesStore, setError, setLoading]);
+  }, [dependencies, devDependencies]);
 
   return { currentDependencies, loading, error, fetchDependencies };
 };
