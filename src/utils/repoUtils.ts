@@ -2,8 +2,8 @@ import type { Repo, GitHubCredentials } from "../types/types";
 import axios from "axios";
 
 export const transformRepo = (repo: any): Repo => ({
-  dependencies: 0, // placeholder
-  dependencyDetails: [],
+  dependencies: repo.dependencies || {}, // placeholder
+  devDependencies: repo.devDependencies || {},
   dependencyStatus: "current", // placeholder
   description: repo.description,
   forks: repo.forks_count,

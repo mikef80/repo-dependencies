@@ -6,8 +6,6 @@ import LanguagesBar from "../LanguagesBar/LanguagesBar";
 import { formatDistanceToNowStrict } from "date-fns";
 
 const RepoCard = ({ repo }: { repo: Repo }) => {
-  
-
   return (
     <li className={styles.repocard}>
       <div className={styles.header_description_container}>
@@ -33,7 +31,15 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
       </div>
       <div className={styles.dependencies}>
         <span className={styles.dependencies_title}>Dependencies</span>
-        <span className={styles.dependencies_count}>123</span>
+        <span className={styles.dependencies_count}>
+          {Object.keys(repo.dependencies).length}
+        </span>
+      </div>
+      <div className={styles.dependencies}>
+        <span className={styles.dependencies_title}>Dev Dependencies</span>
+        <span className={styles.dependencies_count}>
+          {Object.keys(repo.devDependencies).length}
+        </span>
       </div>
       <div className={styles.vulnerabilities}>
         <span className={styles.vulnerabilities_title}>Vulnerabilities</span>

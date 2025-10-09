@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { useCallback } from "react";
 import type { GitHubCredentials, Repo } from "../types/types";
-import { fetchLanguageDetails, transformRepo } from "../utils/repoUtils";
+import { decodeBase64, fetchLanguageDetails, transformRepo } from "../utils/repoUtils";
 import useRepoStore from "../stores/repoStore";
 
 export const useGitHub = (gitHubDetails: GitHubCredentials) => {
@@ -50,12 +50,24 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
         await Promise.all(
           allRepos.map(async (repo: any) => {
             try {
-              await axios.get(
+              const packageJSON = await axios.get(
                 `https://api.github.com/repos/${repo.full_name}/contents/package.json`,
                 { headers }
               );
 
-              return repo;
+              const decodedContent = decodeBase64(packageJSON.data.content);
+
+              if (!decodedContent) return repo;
+
+              const decodedPackageJSON = JSON.parse(decodedContent);
+
+              console.log(decodedPackageJSON);
+              
+
+              const { dependencies, devDependencies } = decodedPackageJSON;
+              const updatedRepo = { ...repo, dependencies, devDependencies };
+
+              return updatedRepo;
             } catch {
               return null;
             }
@@ -67,6 +79,8 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
       const structuredRepos: Repo[] = await Promise.all(
         reposWithPackageJSON.map(async (repo: any) => {
           const baseRepo = transformRepo(repo);
+          console.log(baseRepo,'<--baseRepo');
+          
           let languages;
           if (gitHubDetails.token) {
             const { data } = await fetchLanguageDetails(gitHubDetails, baseRepo);
