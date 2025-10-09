@@ -9,39 +9,69 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
 
   const fetchRepoData = useCallback(async () => {
     setError(null);
-
-    let url = "";
-    if (!gitHubDetails.token) {
-      url = `https://api.github.com/users/${gitHubDetails.username}/repos`;
-    } else {
-      url = `https://api.github.com/user/repos`;
-    }
-
     setLoading(true);
+    console.time("Repo load time");
+
+    const headers: Record<string, string> = {
+      Accept: "application/vnd.github.v3+json",
+      ...(gitHubDetails.token && { Authorization: `Bearer ${gitHubDetails.token}` }),
+    };
+
+    let url = gitHubDetails.token
+      ? "https://api.github.com/user/repos"
+      : `https://api.github.com/users/${gitHubDetails.username}/repos`;
+
+    const perPage = 100;
+    let page = 1;
+    let allRepos: any[] = [];
+
     try {
-      const { data } = await axios.get(url, {
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-          ...(gitHubDetails.token && { Authorization: `Bearer ${gitHubDetails.token}` }),
-        },
-        params: {
-          sort: "updated",
-          per_page: 100,
-          type: "owner",
-        },
-      });
+      // Pagination loop
+      while (true) {
+        const { data } = await axios.get(url, {
+          headers,
+          params: {
+            sort: "updated",
+            per_page: perPage,
+            page,
+            type: "owner",
+          },
+        });
 
+        if (data.length === 0) break; // no more pages
+        allRepos = allRepos.concat(data);
+        page++;
+
+        if (data.length < perPage) break; // last page reached
+      }
+
+      // Filter repos that have package.json
+      const reposWithPackageJSON: Repo[] = (
+        await Promise.all(
+          allRepos.map(async (repo: any) => {
+            try {
+              await axios.get(
+                `https://api.github.com/repos/${repo.full_name}/contents/package.json`,
+                { headers }
+              );
+
+              return repo;
+            } catch {
+              return null;
+            }
+          })
+        )
+      ).filter(Boolean);
+
+      // Fetch language details if token is available
       const structuredRepos: Repo[] = await Promise.all(
-        data.map(async (repo: any) => {
+        reposWithPackageJSON.map(async (repo: any) => {
           const baseRepo = transformRepo(repo);
-
           let languages;
-
           if (gitHubDetails.token) {
             const { data } = await fetchLanguageDetails(gitHubDetails, baseRepo);
             languages = data;
           }
-
           return { ...baseRepo, languages };
         })
       );
