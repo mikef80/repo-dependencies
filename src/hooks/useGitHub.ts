@@ -61,9 +61,6 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
 
               const decodedPackageJSON = JSON.parse(decodedContent);
 
-              console.log(decodedPackageJSON);
-              
-
               const { dependencies, devDependencies } = decodedPackageJSON;
               const updatedRepo = { ...repo, dependencies, devDependencies };
 
@@ -79,8 +76,7 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
       const structuredRepos: Repo[] = await Promise.all(
         reposWithPackageJSON.map(async (repo: any) => {
           const baseRepo = transformRepo(repo);
-          console.log(baseRepo,'<--baseRepo');
-          
+
           let languages;
           if (gitHubDetails.token) {
             const { data } = await fetchLanguageDetails(gitHubDetails, baseRepo);
