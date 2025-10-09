@@ -4,8 +4,19 @@ import type { Repo } from "../../types/types";
 import LanguagesList from "../LanguagesList/LanguagesList";
 import LanguagesBar from "../LanguagesBar/LanguagesBar";
 import { formatDistanceToNowStrict } from "date-fns";
+import { useNPM } from "../../hooks/useNPM";
+import { useEffect } from "react";
 
 const RepoCard = ({ repo }: { repo: Repo }) => {
+  const { currentDependencies, fetchDependencies } = useNPM(
+    repo.dependencies,
+    repo.devDependencies
+  );
+
+  /* useEffect(() => {
+    fetchDependencies();
+  }, []); */
+
   return (
     <li className={styles.repocard}>
       <div className={styles.header_description_container}>

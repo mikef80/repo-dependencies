@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import type { GitHubCredentials, Repo } from "../types/types";
 import { decodeBase64, fetchLanguageDetails, transformRepo } from "../utils/repoUtils";
 import useRepoStore from "../stores/repoStore";
+import { useNPM } from "./useNPM";
 
 export const useGitHub = (gitHubDetails: GitHubCredentials) => {
   const { repos, loading, error, setRepoStore, setLoading, setError } = useRepoStore();
@@ -62,6 +63,11 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
               const decodedPackageJSON = JSON.parse(decodedContent);
 
               const { dependencies, devDependencies } = decodedPackageJSON;
+
+              // const { currentDependencies } = useNPM(dependencies, devDependencies);
+
+              // console.log(currentDependencies, "<--currentDependencies");
+
               const updatedRepo = { ...repo, dependencies, devDependencies };
 
               return updatedRepo;
