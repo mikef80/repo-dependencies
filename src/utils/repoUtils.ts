@@ -1,3 +1,4 @@
+import prettyBytes from "pretty-bytes";
 import type { Repo, GitHubCredentials } from "../types/types";
 import axios from "axios";
 
@@ -14,7 +15,7 @@ export const transformRepo = (repo: any): Repo => ({
   lastUpdate: repo.updated_at,
   name: repo.name,
   private: repo.private,
-  size: repo.size,
+  size: prettyBytes(repo.size),
   stars: repo.stargazers_count,
   topics: repo.topics ?? [],
   vulnerabilities: 0, // placeholder
