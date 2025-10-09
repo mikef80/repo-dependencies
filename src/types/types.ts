@@ -16,7 +16,7 @@ export type Repo = {
   vulnerabilities: number; // custom, not from API
   dependencies: {}; // custom, not from API
   devDependencies: {};
-  size: number; // number in KB from API, format to "51.0 KB"
+  size: string; // number in KB from API, format to "51.0 KB"
   htmlUrl: string;
   topics: string[];
   // dependencyDetails: any[]; // custom, define shape later if needed

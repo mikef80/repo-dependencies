@@ -47,7 +47,7 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
       </div>
       <div className={styles.size}>
         <span className={styles.size_title}>Size</span>
-        <span className={styles.size_count}>123</span>
+        <span className={styles.size_count}>{repo.size}</span>
       </div>
       <hr className={styles.hr} />
       <div className={styles.updated_details}>
