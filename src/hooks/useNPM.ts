@@ -1,15 +1,21 @@
 import axios from "axios";
 import { useCallback } from "react";
-import useDependenciesStore from "../stores/vulnerabilitiesStore";
+import useDependenciesStore from "../stores/dependencyVulnerabilitiesStore";
 
 export const useNPM = (
   dependencies: Record<string, string> = {},
   devDependencies: Record<string, string> = {}
 ) => {
-  const { currentDependencies, loading, error, setDependenciesStore, setLoading, setError } =
-    useDependenciesStore();
+  const {
+    currentDependencyVulnerabilities,
+    loading,
+    error,
+    setDependencyVulnerabilitiesStore,
+    setLoading,
+    setError,
+  } = useDependenciesStore();
 
-  const fetchDependencies = useCallback(async () => {
+  const fetchDependencyVulnerabilities = useCallback(async () => {
     setError(null);
     setLoading(true);
 
@@ -23,9 +29,10 @@ export const useNPM = (
           try {
             const { data } = await axios.get(`https://registry.npmjs.org/${dependency}`);
             return {
-              name: dependency,
-              current: dependencies[dependency] || devDependencies[dependency],
-              latest: data["dist-tags"]?.latest || null,
+              [dependency]: {
+                current: dependencies[dependency] || devDependencies[dependency],
+                latest: data["dist-tags"]?.latest || null,
+              },
             };
           } catch (err) {
             console.error(`Failed to fetch ${dependency}`, err);
@@ -34,10 +41,17 @@ export const useNPM = (
         })
       );
 
+      console.log(results);
+
       console.log("before set dependencies");
 
-      setDependenciesStore(results.filter(Boolean));
-      console.log(currentDependencies, "<--currentDependencies");
+      const currentVulnerabilities = Object.assign({}, ...results);
+
+      console.log(currentVulnerabilities,'<--results');
+      
+
+      /* setDependencyVulnerabilitiesStore(currentVulnerabilities);
+      console.log(currentDependencyVulnerabilities, "<--currentDependencyVulnerabilities"); */
     } catch (error: any) {
       setError(error);
     } finally {
@@ -45,5 +59,5 @@ export const useNPM = (
     }
   }, [dependencies, devDependencies]);
 
-  return { currentDependencies, loading, error, fetchDependencies };
+  return { currentDependencyVulnerabilities, loading, error, fetchDependencyVulnerabilities };
 };

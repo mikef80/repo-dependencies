@@ -8,13 +8,13 @@ import { useNPM } from "../../hooks/useNPM";
 import { useEffect } from "react";
 
 const RepoCard = ({ repo }: { repo: Repo }) => {
-  const { currentDependencies, fetchDependencies } = useNPM(
+  const { currentDependencyVulnerabilities, fetchDependencyVulnerabilities } = useNPM(
     repo.dependencies,
     repo.devDependencies
   );
 
   useEffect(() => {
-    fetchDependencies();
+    fetchDependencyVulnerabilities();
   }, []);
 
   return (
@@ -54,7 +54,7 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
       </div>
       <div className={styles.vulnerabilities}>
         <span className={styles.vulnerabilities_title}>Vulnerabilities</span>
-        <span className={styles.vulnerabilities_count}>123</span>
+        <span className={styles.vulnerabilities_count}>{Object.keys(currentDependencyVulnerabilities).length}</span>
       </div>
       <div className={styles.size}>
         <span className={styles.size_title}>Size</span>

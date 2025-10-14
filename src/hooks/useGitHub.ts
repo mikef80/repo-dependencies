@@ -64,10 +64,6 @@ export const useGitHub = (gitHubDetails: GitHubCredentials) => {
 
               const { dependencies, devDependencies } = decodedPackageJSON;
 
-              // const { currentDependencies } = useNPM(dependencies, devDependencies);
-
-              // console.log(currentDependencies, "<--currentDependencies");
-
               const updatedRepo = { ...repo, dependencies, devDependencies };
 
               return updatedRepo;
