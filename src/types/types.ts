@@ -28,3 +28,7 @@ export type PackageJSON = {
   devDependencies?: Record<string, string>;
   [key: string]: any;
 };
+
+export type DependencyVulnerability = {
+  
+};

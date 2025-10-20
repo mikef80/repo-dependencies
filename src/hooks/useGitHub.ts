@@ -3,7 +3,6 @@ import { useCallback } from "react";
 import type { GitHubCredentials, Repo } from "../types/types";
 import { decodeBase64, fetchLanguageDetails, transformRepo } from "../utils/repoUtils";
 import useRepoStore from "../stores/repoStore";
-import { useNPM } from "./useNPM";
 
 export const useGitHub = (gitHubDetails: GitHubCredentials) => {
   const { repos, loading, error, setRepoStore, setLoading, setError } = useRepoStore();

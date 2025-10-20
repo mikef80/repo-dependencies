@@ -54,7 +54,9 @@ const RepoCard = ({ repo }: { repo: Repo }) => {
       </div>
       <div className={styles.vulnerabilities}>
         <span className={styles.vulnerabilities_title}>Vulnerabilities</span>
-        <span className={styles.vulnerabilities_count}>{Object.keys(currentDependencyVulnerabilities).length}</span>
+        <span className={styles.vulnerabilities_count}>
+          {Object.keys(currentDependencyVulnerabilities).length}
+        </span>
       </div>
       <div className={styles.size}>
         <span className={styles.size_title}>Size</span>

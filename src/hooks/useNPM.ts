@@ -27,6 +27,11 @@ export const useNPM = (
       const results = await Promise.all(
         allDependencies.map(async (dependency) => {
           try {
+            //CHECK IF DEPENDENCY IS ALREADY IN STORE
+            if (currentDependencyVulnerabilities[dependency]) {
+              return currentDependencyVulnerabilities[dependency];
+            }
+
             const { data } = await axios.get(`https://registry.npmjs.org/${dependency}`);
             return {
               [dependency]: {
@@ -47,8 +52,7 @@ export const useNPM = (
 
       const currentVulnerabilities = Object.assign({}, ...results);
 
-      console.log(currentVulnerabilities,'<--results');
-      
+      console.log(currentVulnerabilities, "<--results");
 
       /* setDependencyVulnerabilitiesStore(currentVulnerabilities);
       console.log(currentDependencyVulnerabilities, "<--currentDependencyVulnerabilities"); */
